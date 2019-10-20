@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Make site responsive on mobile/tablet -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>YelpCamp</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="/stylesheets/main.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					</button>
+
+					<a class="navbar-brand" href="/">YelpCamp</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+				  <ul class="nav navbar-nav">
+					<li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
+				  </ul>
+				  <ul class="nav navbar-nav navbar-right">
+						<% if(!currentUser){ %>
+							<li class="dropdown">
+							  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+							  <ul class="dropdown-menu">
+								  <div id="login-dropdown">
+									 <li><form action="/login" method="POST">
+										 <div class="form-group">
+											<input class="form-control" type="text" name="username" placeholder="username">
+										</div>
+										 <div class="form-group">
+											<input class="form-control" type="password" name="password" placeholder="password">
+										</div>
+										 <div class="form-group">
+										    <input class="btn btn-sm btn-primary" type="submit" value="Login">
+											<a id="newUser" href="/register"> New User? </a>
+										 </div>
+									 </form>
+								    </li>
+										 
+								  </div>			 
+							  </ul>
+							</li>
+						<% }else{ %>
+							<li class="dropdown">
+							  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username %> <span class="caret"></span></a>
+							  <ul class="dropdown-menu">
+								<li><a href="#">My Profile</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/logout">Sign Out</a></li>
+							  </ul>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<!-- <!-- <nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/campgrounds">YelpCamp</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<!-- <% if(!currentUser){ %> -->
+							<!-- <li><a href="/login">Login</a></li>
+							<li><a href="/register">Sign Up</a></li> -->
+							<!-- <li class="dropdown">
+							  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a> -->
+							  <!-- <ul class="dropdown-menu">
+								  <div id="login-dropdown">
+									 <li><form action="/login" method="POST">
+										 <div class="form-group">
+											<input class="form-control" type="text" name="username" placeholder="username">
+										</div>
+										 <div class="form-group">
+											<input class="form-control" type="password" name="password" placeholder="password">
+										</div>
+										 <div class="form-group">
+										    <input class="btn btn-sm btn-primary" type="submit" value="Login">
+											<a id="newUser" href="/register"> New User? </a>
+										 </div>
+									 </form>
+								    </li>
+										 
+								  </div>			 
+							  </ul>
+							</li>
+						<!-- <% }else{ %> -->
+							<!-- <li class="dropdown">
+							  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username %> <span class="caret"></span></a>
+							  <ul class="dropdown-menu">
+								<li><a href="#">My Profile</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/logout">Sign Out</a></li>
+							  </ul>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>  -->
+
+
+		<div class="container">
+			<% if(error && error.length >0){ %>
+				<div id="error" class="alert alert-danger" role="alert"><%= error %></div> 
+			<% } %>
+			<% if(warning && warning.length >0){ %>
+				<div id="warning" class="alert alert-warning" role="alert"><%= warning %></div>
+			<% } %>
+			<% if(success && success.length >0){ %>
+				<div id="success" class="alert alert-warning" role="alert"><%- success %></div>
+			<% } %>
+		</div>
+		
+		<div class="container">
+
+		
+
+		
